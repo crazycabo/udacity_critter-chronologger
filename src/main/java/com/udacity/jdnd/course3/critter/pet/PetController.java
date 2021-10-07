@@ -11,7 +11,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Handles web requests related to Pets.
+ * Updated by Brian Smith on 10/7/21.
+ * Description: Handles web requests related to Pets.
  */
 @RestController
 @RequestMapping("/pet")
