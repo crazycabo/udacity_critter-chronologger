@@ -36,8 +36,10 @@ public class UserController {
 
     @PostMapping("/customer")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
-        Customer customer = new Customer(customerDTO.getPhoneNumber(), customerDTO.getNotes());
-        customer.setName(customerDTO.getName());
+        Customer customer = new Customer(
+                customerDTO.getName(),
+                customerDTO.getPhoneNumber(),
+                customerDTO.getNotes());
 
         List<Long> petIds = customerDTO.getPetIds();
 
