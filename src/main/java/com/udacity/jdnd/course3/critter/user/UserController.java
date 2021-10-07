@@ -3,9 +3,11 @@ package com.udacity.jdnd.course3.critter.user;
 import com.udacity.jdnd.course3.critter.pet.Pet;
 import com.udacity.jdnd.course3.critter.user.customer.Customer;
 import com.udacity.jdnd.course3.critter.user.customer.CustomerDTO;
+import com.udacity.jdnd.course3.critter.user.customer.CustomerService;
 import com.udacity.jdnd.course3.critter.user.employee.Employee;
 import com.udacity.jdnd.course3.critter.user.employee.EmployeeDTO;
 import com.udacity.jdnd.course3.critter.user.employee.EmployeeRequestDTO;
+import com.udacity.jdnd.course3.critter.user.employee.EmployeeService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,19 +31,31 @@ import java.util.stream.Collectors;
 @RequestMapping("/user")
 public class UserController {
 
+    CustomerService customerService;
+    EmployeeService employeeService;
+
     @PostMapping("/customer")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
-        throw new UnsupportedOperationException();
+        Customer customer = new Customer(customerDTO.getPhoneNumber(), customerDTO.getNotes());
+        customer.setName(customerDTO.getName());
+
+        List<Long> petIds = customerDTO.getPetIds();
+
+        Customer savedCustomer = customerService.save(customer, petIds);
+
+        return buildCustomerDTO(savedCustomer);
     }
 
     @GetMapping("/customer")
     public List<CustomerDTO> getAllCustomers(){
-        throw new UnsupportedOperationException();
+        List<Customer> customers = customerService.findAllCustomers();
+
+        return customers.stream().map(this::buildCustomerDTO).collect(Collectors.toList());
     }
 
     @GetMapping("/customer/pet/{petId}")
     public CustomerDTO getOwnerByPet(@PathVariable long petId){
-        throw new UnsupportedOperationException();
+        return buildCustomerDTO(customerService.findCustomerByPetId(petId));
     }
 
     @PostMapping("/employee")
