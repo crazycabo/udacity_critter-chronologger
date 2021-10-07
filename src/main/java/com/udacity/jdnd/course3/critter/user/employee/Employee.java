@@ -29,4 +29,11 @@ public class Employee extends User {
     @ElementCollection
     @JoinTable(name="employee_availability")
     private Set<DayOfWeek> daysAvailable;
+
+    public Employee(String name, Set<EmployeeSkill> skills, Set<DayOfWeek> daysAvailable) {
+        super(name);
+
+        this.skills = skills;
+        this.daysAvailable = daysAvailable;
+    }
 }

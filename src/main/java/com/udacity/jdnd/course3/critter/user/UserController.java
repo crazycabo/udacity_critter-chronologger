@@ -62,22 +62,33 @@ public class UserController {
 
     @PostMapping("/employee")
     public EmployeeDTO saveEmployee(@RequestBody EmployeeDTO employeeDTO) {
-        throw new UnsupportedOperationException();
+        Employee employee = new Employee(
+                employeeDTO.getName(),
+                employeeDTO.getSkills(),
+                employeeDTO.getDaysAvailable());
+
+        Employee savedEmployee = employeeService.save(employee);
+
+        return buildEmployeeDTO(savedEmployee);
     }
 
     @PostMapping("/employee/{employeeId}")
     public EmployeeDTO getEmployee(@PathVariable long employeeId) {
-        throw new UnsupportedOperationException();
+        return buildEmployeeDTO(employeeService.findEmployeeById(employeeId));
     }
 
     @PutMapping("/employee/{employeeId}")
     public void setAvailability(@RequestBody Set<DayOfWeek> daysAvailable, @PathVariable long employeeId) {
-        throw new UnsupportedOperationException();
+        employeeService.setEmployeeAvailabilityByEmployeeId(daysAvailable, employeeId);
     }
 
     @GetMapping("/employee/availability")
     public List<EmployeeDTO> findEmployeesForService(@RequestBody EmployeeRequestDTO employeeDTO) {
-        throw new UnsupportedOperationException();
+        List<Employee> employees = employeeService.findEmployeesWithMatchingCriteria(
+                employeeDTO.getSkills(),
+                employeeDTO.getDate());
+
+        return employees.stream().map(this::buildEmployeeDTO).collect(Collectors.toList());
     }
 
     private CustomerDTO buildCustomerDTO(Customer customer) {
