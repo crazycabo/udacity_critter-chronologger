@@ -32,7 +32,9 @@ public class Customer extends User {
     @OneToMany(mappedBy = "customer", fetch= FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Pet> pets;
 
-    public Customer(String phoneNumber, String notes) {
+    public Customer(String name, String phoneNumber, String notes) {
+        super(name);
+
         this.phoneNumber = phoneNumber;
         this.notes = notes;
 
