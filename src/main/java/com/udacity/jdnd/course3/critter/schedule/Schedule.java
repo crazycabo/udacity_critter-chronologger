@@ -51,4 +51,11 @@ public class Schedule {
     @ElementCollection
     @JoinTable(name="schedule_activities")
     private Set<EmployeeSkill> activities;
+
+    public Schedule(LocalDate date, List<Employee> employees, List<Pet> pets, Set<EmployeeSkill> activities) {
+        this.date = date;
+        this.employees = employees;
+        this.pets = pets;
+        this.activities = activities;
+    }
 }
