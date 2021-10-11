@@ -2,6 +2,7 @@ package com.udacity.jdnd.course3.critter.user.customer;
 
 import com.udacity.jdnd.course3.critter.pet.Pet;
 import com.udacity.jdnd.course3.critter.pet.PetRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -16,7 +17,11 @@ import static java.util.stream.Collectors.toList;
 @Service
 @Transactional
 public class CustomerService {
+
+    @Autowired
     CustomerRepo customerRepo;
+
+    @Autowired
     PetRepo petRepo;
 
     public List<Customer> findAllCustomers() {

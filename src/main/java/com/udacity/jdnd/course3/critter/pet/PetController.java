@@ -1,5 +1,6 @@
 package com.udacity.jdnd.course3.critter.pet;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,8 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/pet")
 public class PetController {
+
+    @Autowired
     PetService petService;
 
     @PostMapping
@@ -47,11 +50,12 @@ public class PetController {
 
     private PetDTO buildPetDTO(Pet pet) {
         return PetDTO.builder()
-                .id(pet.getCustomer().getId())
+                .id(pet.getId())
                 .type(pet.getType())
                 .name(pet.getName())
                 .birthDate(pet.getBirthDate())
                 .notes(pet.getNotes())
+                .ownerId(pet.getCustomer().getId())
                 .build();
     }
 }

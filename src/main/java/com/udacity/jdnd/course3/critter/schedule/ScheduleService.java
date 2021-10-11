@@ -4,6 +4,7 @@ import com.udacity.jdnd.course3.critter.pet.PetRepo;
 import com.udacity.jdnd.course3.critter.user.customer.Customer;
 import com.udacity.jdnd.course3.critter.user.customer.CustomerRepo;
 import com.udacity.jdnd.course3.critter.user.employee.EmployeeRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -17,9 +18,17 @@ import java.util.List;
 @Service
 @Transactional
 public class ScheduleService {
+
+    @Autowired
     CustomerRepo customerRepo;
+
+    @Autowired
     EmployeeRepo employeeRepo;
+
+    @Autowired
     PetRepo petRepo;
+
+    @Autowired
     ScheduleRepo scheduleRepo;
 
     public List<Schedule> findAllSchedules() {
