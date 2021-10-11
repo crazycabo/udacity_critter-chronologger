@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -38,7 +37,7 @@ public class ScheduleService {
     public List<Schedule> findScheduleByCustomerId(Long id) {
         Customer owner = customerRepo.getOne(id);
 
-        return scheduleRepo.getAllByPetsIn(Collections.singletonList(owner.getPets()));
+        return scheduleRepo.getAllByPetsIn(owner.getPets());
     }
 
     public List<Schedule> findSchedulesByEmployeeId(Long id) {

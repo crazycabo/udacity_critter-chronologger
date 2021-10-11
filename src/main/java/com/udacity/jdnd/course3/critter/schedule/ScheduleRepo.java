@@ -4,7 +4,6 @@ import com.udacity.jdnd.course3.critter.pet.Pet;
 import com.udacity.jdnd.course3.critter.user.employee.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -14,5 +13,5 @@ import java.util.List;
 public interface ScheduleRepo extends JpaRepository<Schedule, Long> {
     List<Schedule> getAllByEmployeesContains(Employee employee);
     List<Schedule> getAllByPetsContains(Pet pet);
-    List<Schedule> getAllByPetsIn(Collection<List<Pet>> pets);
+    List<Schedule> getAllByPetsIn(List<Pet> pets);
 }
