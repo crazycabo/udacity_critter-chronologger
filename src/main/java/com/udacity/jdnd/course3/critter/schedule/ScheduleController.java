@@ -4,6 +4,7 @@ import com.udacity.jdnd.course3.critter.pet.Pet;
 import com.udacity.jdnd.course3.critter.pet.PetRepo;
 import com.udacity.jdnd.course3.critter.user.employee.Employee;
 import com.udacity.jdnd.course3.critter.user.employee.EmployeeRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,8 +22,14 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/schedule")
 public class ScheduleController {
+
+    @Autowired
     ScheduleService scheduleService;
+
+    @Autowired
     EmployeeRepo employeeRepo;
+
+    @Autowired
     PetRepo petRepo;
 
     @PostMapping

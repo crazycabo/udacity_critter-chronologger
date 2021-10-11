@@ -1,6 +1,8 @@
 package com.udacity.jdnd.course3.critter.user.employee;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.time.DayOfWeek;
 import java.util.Set;
@@ -10,6 +12,8 @@ import java.util.Set;
  * to the database directly.
  */
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class EmployeeDTO {
     private long id;
     private String name;

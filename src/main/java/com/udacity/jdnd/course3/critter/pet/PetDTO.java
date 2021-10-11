@@ -1,6 +1,8 @@
 package com.udacity.jdnd.course3.critter.pet;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
@@ -9,6 +11,8 @@ import java.time.LocalDate;
  * to the database directly.
  */
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class PetDTO {
     private long id;
     private PetType type;

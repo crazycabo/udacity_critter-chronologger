@@ -8,6 +8,7 @@ import com.udacity.jdnd.course3.critter.user.employee.Employee;
 import com.udacity.jdnd.course3.critter.user.employee.EmployeeDTO;
 import com.udacity.jdnd.course3.critter.user.employee.EmployeeRequestDTO;
 import com.udacity.jdnd.course3.critter.user.employee.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.DayOfWeek;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -31,7 +33,10 @@ import java.util.stream.Collectors;
 @RequestMapping("/user")
 public class UserController {
 
+    @Autowired
     CustomerService customerService;
+
+    @Autowired
     EmployeeService employeeService;
 
     @PostMapping("/customer")
@@ -41,7 +46,7 @@ public class UserController {
                 customerDTO.getPhoneNumber(),
                 customerDTO.getNotes());
 
-        List<Long> petIds = customerDTO.getPetIds();
+        List<Long> petIds = (customerDTO.getPetIds() != null) ? customerDTO.getPetIds() : new ArrayList<>();
 
         Customer savedCustomer = customerService.save(customer, petIds);
 
