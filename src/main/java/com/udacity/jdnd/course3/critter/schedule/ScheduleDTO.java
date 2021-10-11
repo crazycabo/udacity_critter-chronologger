@@ -1,7 +1,9 @@
 package com.udacity.jdnd.course3.critter.schedule;
 
 import com.udacity.jdnd.course3.critter.user.employee.EmployeeSkill;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,6 +14,8 @@ import java.util.Set;
  * to the database directly.
  */
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ScheduleDTO {
     private long id;
     private List<Long> employeeIds;

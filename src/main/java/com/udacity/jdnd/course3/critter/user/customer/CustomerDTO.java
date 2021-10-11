@@ -1,6 +1,8 @@
 package com.udacity.jdnd.course3.critter.user.customer;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -9,6 +11,8 @@ import java.util.List;
  * to the database directly.
  */
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CustomerDTO {
     private long id;
     private String name;
